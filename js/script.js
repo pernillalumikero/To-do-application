@@ -1,12 +1,11 @@
-let addButton = document.querySelector("#add-btn");
-let resetButton = document.querySelector("#reset-btn");
-let addInput = document.querySelector("#add-container input");
+let addButton    = document.querySelector("#add-btn");
+let resetButton  = document.querySelector("#reset-btn");
+let addInput     = document.querySelector("#add-container input");
 
-let toDoList = document.querySelector("#to-do-list ul");
-let doneList = document.querySelector("#done-list ul");
+let toDoList     = document.querySelector("#to-do-list ul");
+let doneList     = document.querySelector("#done-list ul");
 
 let errorMessage = document.querySelector("#error-message");
-
 
 class listItem {
     constructor(listItem, input, newInput, changebtn, doneBtn, deletebtn) {
@@ -24,16 +23,15 @@ class listItem {
             errorMessage.innerText = "Kan inte lägga till uppgift utan innehåll";
         //unlock input field to let user change input, show save button
         } else if (this.input.hasAttribute("disabled")) {
+            errorMessage.innerText = "";
             this.input.removeAttribute("disabled", "");
             this.changebtn.innerText = "Spara";
-            errorMessage.innerText = "";
         //reset button to change, lock input field
         } else {
+            errorMessage.innerText = "";
             this.changebtn.innerText = "Ändra";
             this.input.setAttribute("disabled", "");
-            errorMessage.innerText = "";
             }
-       
     }
 
     deleteButtonFunction() {
@@ -41,26 +39,34 @@ class listItem {
         this.listItem.remove();
         this.changebtn.remove();
         this.deletebtn.remove();
+        //added if-statement to have method work for both objects
         if (this.doneBtn != undefined) {
             this.doneBtn.remove();
         }
     }
 
     doneButtonFunction() {
+        //if user clicks done button deleteButtonFunction is called first, 
+        //then this method sets attribute and input value
         this.input.setAttribute("disabled", "");
         this.input.value = this.newInput.value;
     }
 
     errorFunction() {
         //if user tries to add empty string - show error message
-        if (newInput.value == "") {
+        if (this.newInput.value == "") {
             errorMessage.innerText = "Kan inte lägga till uppgift utan innehåll";
-        } //if user inputs string add string to new input field and close field, clear input box for new tasks
+        } //if user inputs string add string to new input field and close field, 
+          //clear input box for new tasks and add items to toDoList
             else {
             errorMessage.innerText = "";
-            input.value = newInput.value;
-            input.setAttribute("disabled", "");
-            newInput.value = "";
+            this.input.value = this.newInput.value;
+            this.input.setAttribute("disabled", "");
+            this.newInput.value = "";
+
+             //add elements to toDoList ul and input to li
+            toDoList.append(this.listItem, this.changebtn, this.doneBtn, this.deletebtn);
+            this.listItem.appendChild(this.input);
         }
     }
 }
@@ -71,19 +77,8 @@ addButton.addEventListener("click", function() {
     //create a li with input in #to-do-list ul - use addInput as value
     let newToDoListItem = document.createElement("li");
     let newToDoInput = document.createElement("input");
-
-    //if user tries to add empty string - show error message
-    if (addInput.value == "") {
-        errorMessage.innerText = "Kan inte lägga till uppgift utan innehåll";
-    } //if user inputs string add string to new input field and close field, clear input box for new tasks
-        else {
-        errorMessage.innerText = "";
-        newToDoInput.value = addInput.value;
-        newToDoInput.setAttribute("disabled", "");
-        addInput.value = "";
-        
-
-        //generate change button
+    
+        //generate change button for newToDo-li
         let changeBtnToDo = document.createElement("button");
         changeBtnToDo.innerText = "Ändra";
 
@@ -95,9 +90,9 @@ addButton.addEventListener("click", function() {
         let deleteBtnToDo = document.createElement("button");
         deleteBtnToDo.innerText = "Radera"; 
 
-        //initialize object: newToDo
+        //declare object: newToDo
         let newToDo = new listItem(newToDoListItem, newToDoInput, addInput, changeBtnToDo, doneBtnToDo, deleteBtnToDo);
-
+        
          //add function to change button on click
         changeBtnToDo.addEventListener("click", function(){
             newToDo.changeButtonFunction();
@@ -122,17 +117,18 @@ addButton.addEventListener("click", function() {
             let deleteBtnDone = document.createElement("button");
             deleteBtnDone.innerText = "Radera";
 
-            //initialize object: done
+            //declare object: done
             let done = new listItem(doneItem, doneInput, newToDoInput, changeBtnDone, undefined, deleteBtnDone);
 
-            done.deleteButtonFunction();
+            //call object methods
+            newToDo.deleteButtonFunction();
             done.doneButtonFunction();
-            //doneInput.value = newToDoInput.value;
-            
-            changeBtnDone.addEventListener("click", function(){
-            done.changeButtonFunction();
-            })
 
+            //add function button on click
+            changeBtnDone.addEventListener("click", function(){
+                done.changeButtonFunction();
+            })
+            //add function on button on click
             deleteBtnDone.addEventListener ("click", function(){
                 done.deleteButtonFunction();
             })
@@ -141,18 +137,13 @@ addButton.addEventListener("click", function() {
             doneList.append(doneItem, changeBtnDone, deleteBtnDone);
             doneItem.appendChild(doneInput);
         })
-
-        //add elements to toDoList ul and input to li
-        toDoList.append(newToDoListItem, changeBtnToDo, doneBtnToDo, deleteBtnToDo);
-        newToDoListItem.appendChild(newToDoInput);
-        }
-
+        //call object method
+        newToDo.errorFunction();
 });
 
 //generate reset button to erase all list items in both lists
 resetButton.addEventListener ("click", function(){
     toDoList.innerText = "";
     doneList.innerText = "";
-    
 });
 
