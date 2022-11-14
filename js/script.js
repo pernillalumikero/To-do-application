@@ -20,7 +20,7 @@ class listItem {
     changeButtonFunction(){
         //if user tries to add empty string - show error message
         if (this.input.value == "") {
-            errorMessage.innerText = "Kan inte lägga till uppgift utan innehåll";
+            errorMessage.innerText = "Kan inte spara uppgift utan innehåll";
         //unlock input field to let user change input, show save button
         } else if (this.input.hasAttribute("disabled")) {
             errorMessage.innerText = "";
@@ -86,6 +86,7 @@ addButton.addEventListener("click", function() {
         //generate done button for newToDo-li
         let doneBtnToDo = document.createElement("button");
         doneBtnToDo.innerText = "Färdig";
+        doneBtnToDo.id = "done-btn";
 
         //generate delete button for newToDo-li
         let deleteBtnToDo = document.createElement("button");

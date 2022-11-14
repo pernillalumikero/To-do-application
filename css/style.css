@@ -1,5 +1,6 @@
 :root {
 --bg-color: rgb(26, 26, 26);
+--accent-color: rgb(237, 154, 0); 
 }
 
 body {
@@ -9,7 +10,7 @@ body {
 header {
     margin: 0 auto 20px auto;
     padding: 2px;
-    width: 80%;
+    width: 90%;
     background-color: var(--bg-color);
     color: white;
 }
@@ -20,7 +21,12 @@ header {
     flex-flow: row nowrap;
     justify-content: space-evenly;
     column-gap: 50px;
-    width: 80%;
+    width: 90%;
+}
+
+#img-container {
+    display: flex;
+    justify-content: center;
 }
 
 #container {
@@ -28,16 +34,16 @@ header {
 }
 
 #checklist-img {
-    padding-top: 50px;
-    width: 200px;
-    height: 220px;
+    padding-top: 20px;
+    width: 150px;
+    height: 180px;
 
 }
 
 h1 {
     text-align: center;
     text-decoration: underline;
-    text-decoration-color: orange;
+    text-decoration-color: var(--accent-color);
 }
 
 h1, h2 {
@@ -63,7 +69,7 @@ input {
 }
 
 input:disabled {
-    color: orange;
+    color: var(--accent-color);
     border: none;
    
 }
@@ -76,11 +82,16 @@ button {
     border-radius: 6px;
 }
 
+#done-btn, #add-btn {
+    background-color: var(--accent-color);
+}
+
 footer {
-    width: 77%;
+    width: 90%;
     margin: 20px auto 0 auto;
     background-color:  var(--bg-color);
     color: white;
-    padding: 20px;
+    padding: 20px 0;
     text-align: center;
 }
+
