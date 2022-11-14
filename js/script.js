@@ -36,6 +36,7 @@ class listItem {
 
     deleteButtonFunction() {
         //remove items and related buttons
+        errorMessage.innerText = "";
         this.listItem.remove();
         this.changebtn.remove();
         this.deletebtn.remove();

@@ -6,17 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-do-application</title>
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
     
 </head>
 <body>
+    <header>
+        <h1>Uppgiftshanteraren</h1>
+    </header>
     <div id="wrapper">
-
-        <div id="add-container">
-            <h1>Uppgiftshanteraren</h1>
+        <!--<p>Välkommen till uppgiftshanteraren! Den hjälper dig att hålla ordning på dina uppgifter. Skriv bara in den uppgift som du behöver utföra. Markera den sedan som färdig när du har utfört den. Klart!</p>-->
+        <div id="container">
             <h2>Lägg till en uppgift</h2>
-            <input type="text">
-            <button id="add-btn">Lägg till</button>
-            <button id="reset-btn">Återställ</button>
+            <div id="add-container">
+                <input type="text">
+                <button id="add-btn">Lägg till</button>
+                <button id="reset-btn">Återställ</button>
+                <!-- <img id="checklist-img" src="/img/checklist.png" alt="En penna som kryssar av uppgifter på en lista"> -->
+            </div>
             <p id="error-message"></p>
         </div>
 
@@ -34,6 +40,8 @@
             </div>
         </div>
     </div>
+   
+    <footer><p>Detta är en uppgift tillhörande utbildningen till Frontendutvecklare på Jensen YH. HTML, CSS och Javascrip av Pernilla Lumikero.</p></footer>
 
     <script src="js/script.js"></script>
 </body>

@@ -1,0 +1,86 @@
+:root {
+--bg-color: rgb(26, 26, 26);
+}
+
+body {
+    font-family: 'Kalam', cursive;;
+}
+
+header {
+    margin: 0 auto 20px auto;
+    padding: 2px;
+    width: 80%;
+    background-color: var(--bg-color);
+    color: white;
+}
+
+#wrapper {
+    margin: 0 auto;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    column-gap: 50px;
+    width: 80%;
+}
+
+#container {
+    height: fit-content;
+}
+
+#checklist-img {
+    padding-top: 50px;
+    width: 200px;
+    height: 220px;
+
+}
+
+h1 {
+    text-align: center;
+    text-decoration: underline;
+    text-decoration-color: orange;
+}
+
+h1, h2 {
+    font-family: 'Cutive Mono', monospace;
+}
+
+#error-message {
+    color: red;
+}
+
+#wrapper > div {
+    border: 1px dashed var(--bg-color);
+    width: 30%;
+    padding: 15px;
+}
+
+input {
+    border-radius: 5px;
+    font-size: 1em;
+    border: 2px solid var(--bg-color);
+    text-transform: uppercase;
+    font-family: 'Kalam', cursive;
+}
+
+input:disabled {
+    color: orange;
+    border: none;
+   
+}
+
+button {
+    margin: 10px 2px;
+    padding: 5px;
+    background-color: var(--bg-color);
+    color: white;
+    border-radius: 6px;
+}
+
+footer {
+    width: 77%;
+    margin: 20px auto 0 auto;
+    background-color:  var(--bg-color);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
