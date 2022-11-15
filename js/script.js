@@ -21,18 +21,18 @@ class listItem {
 
     changeButtonFunction(){
         //if user tries to add empty string - show error message
-        if (this.input.value == "") {
+        if (this.newInput.value == "") {
             errorMessage.innerText = "Kan inte spara uppgift utan innehåll";
         //unlock input field to let user change input, show save button
-        } else if (this.input.hasAttribute("disabled")) {
+        } else if (this.newInput.hasAttribute("disabled")) {
             errorMessage.innerText = "";
-            this.input.removeAttribute("disabled", "");
+            this.newInput.removeAttribute("disabled", "");
             this.changebtn.innerText = "Spara";
         //reset button to change, lock input field
         } else {
             errorMessage.innerText = "";
             this.changebtn.innerText = "Ändra";
-            this.input.setAttribute("disabled", "");
+            this.newInput.setAttribute("disabled", "");
             }
     }
 
@@ -50,25 +50,25 @@ class listItem {
 
     addFunction() {
         //if user tries to add empty string - show error message
-        if (this.newInput.value == "") {
+        if (this.input.value == "") {
             errorMessage.innerText = "Kan inte lägga till uppgift utan innehåll";
         } //if user inputs string add string to new input field and close field, 
           //clear input box for new tasks and add items to toDoList
             else {
             errorMessage.innerText = "";
-            this.input.value = this.newInput.value;
-            this.input.setAttribute("disabled", "");
-            this.newInput.value = "";
+            this.newInput.value = this.input.value;
+            this.newInput.setAttribute("disabled", "");
+            this.input.value = "";
 
             //check if object has done-button
             if (this.doneBtn == undefined) {
                 //add elements to doneList ul and input to li
                 doneList.append(this.listItem, this.changebtn, this.deletebtn);
-                this.listItem.appendChild(this.input);
+                this.listItem.appendChild(this.newInput);
             } else {
                 //add elements to toDolist and input to li
                 toDoList.append(this.listItem, this.changebtn, this.doneBtn, this.deletebtn);
-                this.listItem.appendChild(this.input);
+                this.listItem.appendChild(this.newInput);
             }
         }
     }
@@ -96,7 +96,7 @@ addButton.addEventListener("click", function() {
         deleteBtnToDo.innerText = "Radera"; 
 
         //declare object: newToDo
-        let newToDo = new listItem(newToDoListItem, newToDoInput, addInput, changeBtnToDo, doneBtnToDo, deleteBtnToDo);
+        let newToDo = new listItem(newToDoListItem, addInput, newToDoInput, changeBtnToDo, doneBtnToDo, deleteBtnToDo);
         
          //add function to change button on click
         changeBtnToDo.addEventListener("click", function(){
@@ -123,7 +123,7 @@ addButton.addEventListener("click", function() {
             deleteBtnDone.innerText = "Radera";
 
             //declare object: done
-            let done = new listItem(doneItem, doneInput, newToDoInput, changeBtnDone, undefined, deleteBtnDone);
+            let done = new listItem(doneItem, newToDoInput, doneInput, changeBtnDone, undefined, deleteBtnDone);
 
             //call object method
             done.addFunction();
