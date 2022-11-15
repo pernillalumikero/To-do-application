@@ -7,6 +7,9 @@ let doneList     = document.querySelector("#done-list ul");
 
 let errorMessage = document.querySelector("#error-message");
 
+let newToDoListItem = "";
+let newToDoInput = "";
+
 //CLASS AND METHODS
 
 class listItem {
@@ -18,6 +21,12 @@ class listItem {
         this.doneBtn    = doneBtn;
         this.deletebtn  = deletebtn;
     }
+
+    createFunction() {
+        this.listItem = document.createElement("li");
+        this.newInput = document.createElement("input");
+    }
+
 
     changeButtonFunction(){
         //if user tries to add empty string - show error message
@@ -79,8 +88,8 @@ class listItem {
 //add function to addButton on click
 addButton.addEventListener("click", function() {
     //create a li with input in #to-do-list ul
-    let newToDoListItem = document.createElement("li");
-    let newToDoInput = document.createElement("input");
+    // let newToDoListItem = document.createElement("li");
+    // let newToDoInput = document.createElement("input");
     
         //generate change button for newToDo-li
         let changeBtnToDo = document.createElement("button");
@@ -97,6 +106,8 @@ addButton.addEventListener("click", function() {
 
         //declare object: newToDo
         let newToDo = new listItem(newToDoListItem, addInput, newToDoInput, changeBtnToDo, doneBtnToDo, deleteBtnToDo);
+
+        newToDo.createFunction();
         
          //add function to change button on click
         changeBtnToDo.addEventListener("click", function(){
