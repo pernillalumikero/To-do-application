@@ -7,6 +7,8 @@ let doneList     = document.querySelector("#done-list ul");
 
 let errorMessage = document.querySelector("#error-message");
 
+//CLASS AND METHODS
+
 class listItem {
     constructor(listItem, input, newInput, changebtn, doneBtn, deletebtn) {
         this.listItem   = listItem;
@@ -72,10 +74,11 @@ class listItem {
     }
 }
 
+//APPLICATION CODE STARTS HERE
 
 //add function to addButton on click
 addButton.addEventListener("click", function() {
-    //create a li with input in #to-do-list ul - use addInput as value
+    //create a li with input in #to-do-list ul
     let newToDoListItem = document.createElement("li");
     let newToDoInput = document.createElement("input");
     
@@ -148,4 +151,3 @@ resetButton.addEventListener ("click", function(){
     toDoList.innerText = "";
     doneList.innerText = "";
 });
-
