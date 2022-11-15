@@ -7,6 +7,8 @@ let doneList     = document.querySelector("#done-list ul");
 
 let errorMessage = document.querySelector("#error-message");
 
+//CLASS AND METHODS
+
 class listItem {
     constructor(listItem, input, newInput, changebtn, doneBtn, deletebtn) {
         this.listItem   = listItem;
@@ -20,7 +22,7 @@ class listItem {
     changeButtonFunction(){
         //if user tries to add empty string - show error message
         if (this.input.value == "") {
-            errorMessage.innerText = "Kan inte lägga till uppgift utan innehåll";
+            errorMessage.innerText = "Kan inte spara uppgift utan innehåll";
         //unlock input field to let user change input, show save button
         } else if (this.input.hasAttribute("disabled")) {
             errorMessage.innerText = "";
@@ -36,6 +38,7 @@ class listItem {
 
     deleteButtonFunction() {
         //remove items and related buttons
+        errorMessage.innerText = "";
         this.listItem.remove();
         this.changebtn.remove();
         this.deletebtn.remove();
@@ -71,10 +74,11 @@ class listItem {
     }
 }
 
+//APPLICATION CODE STARTS HERE
 
 //add function to addButton on click
 addButton.addEventListener("click", function() {
-    //create a li with input in #to-do-list ul - use addInput as value
+    //create a li with input in #to-do-list ul
     let newToDoListItem = document.createElement("li");
     let newToDoInput = document.createElement("input");
     
@@ -85,6 +89,7 @@ addButton.addEventListener("click", function() {
         //generate done button for newToDo-li
         let doneBtnToDo = document.createElement("button");
         doneBtnToDo.innerText = "Färdig";
+        doneBtnToDo.id = "done-btn";
 
         //generate delete button for newToDo-li
         let deleteBtnToDo = document.createElement("button");
@@ -146,4 +151,3 @@ resetButton.addEventListener ("click", function(){
     toDoList.innerText = "";
     doneList.innerText = "";
 });
-
