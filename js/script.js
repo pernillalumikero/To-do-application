@@ -10,8 +10,8 @@ let errorMessage = document.querySelector("#error-message");
 //CLASS AND METHODS
 
 class listItem {
-    constructor(listItem, input, newInput, changebtn, doneBtn, deletebtn) {
-        this.listItem   = listItem;
+    constructor(li, input, newInput, changebtn, doneBtn, deletebtn) {
+        this.li   = li;
         this.input      = input;
         this.newInput   = newInput;
         this.changebtn  = changebtn;
@@ -39,7 +39,7 @@ class listItem {
     deleteButtonFunction() {
         //remove items and related buttons
         errorMessage.innerText = "";
-        this.listItem.remove();
+        this.li.remove();
         this.changebtn.remove();
         this.deletebtn.remove();
         //check for done button and remove if found
@@ -63,12 +63,12 @@ class listItem {
             //check if object has done-button
             if (this.doneBtn == undefined) {
                 //add elements to doneList ul and input to li
-                doneList.append(this.listItem, this.changebtn, this.deletebtn);
-                this.listItem.appendChild(this.newInput);
+                doneList.append(this.li, this.changebtn, this.deletebtn);
+                this.li.appendChild(this.newInput);
             } else {
                 //add elements to toDolist and input to li
-                toDoList.append(this.listItem, this.changebtn, this.doneBtn, this.deletebtn);
-                this.listItem.appendChild(this.newInput);
+                toDoList.append(this.li, this.changebtn, this.doneBtn, this.deletebtn);
+                this.li.appendChild(this.newInput);
             }
         }
     }
